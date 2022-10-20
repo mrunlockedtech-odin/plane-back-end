@@ -33,6 +33,6 @@ const activitySchema = new Schema({
   timestamps: true,
 })
 
-const Profile = mongoose.model('Profile', profileSchema)
+const Activity = mongoose.model('Activity', activitySchema)
 
-export { Profile }
+export { Activity }
