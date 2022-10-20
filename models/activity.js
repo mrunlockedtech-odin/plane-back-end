@@ -12,11 +12,15 @@ const reviewSchema = new Schema({
 
 const activitySchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
-  name: String,
+  name: {
+    type:String,
+    require:true
+  },
   description: String,
   destination: {
     type:String,
-    enum: ['Miami','Boston','Atlanta', 'Dallas']
+    enum: ['Miami','Boston','Atlanta', 'Dallas'],
+    require:true
   },
   timeOfDay: {
     type:String,
