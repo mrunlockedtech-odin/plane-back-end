@@ -7,18 +7,19 @@ const tripSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
   name: {
     type:String,
-    require:true
+    required:true,
   },
   private: {
     type:Boolean,
+    default:true,
     required:true,
   },
   startDate: {
-    type:Number,
+    type:Date,
     required:true,
   },
   endDate: {
-    type:Number,
+    type:Date,
     required:true,
   },
   
