@@ -10,6 +10,9 @@ const router = Router()
 
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
+
+// GET api/activities/  index of all activities
+router.get('/', checkAuth, activityCtrl.index)
 router.post('/',checkAuth,activityCtrl.create)
 
 export { router }

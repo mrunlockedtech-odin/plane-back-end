@@ -13,4 +13,13 @@ const create = async(req,res) => {
   }
 }
 
-export {create, }
+const index = async (req, res) => {
+  try {
+    const activity = await Activity.find({})
+      .populate('owner')
+    res.status(200).json(activity)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+export {create, index}
