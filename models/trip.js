@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const activityPlanSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
   activity: {type: Schema.Types.ObjectId, ref: 'Activity'},
-  date: {type: Date, required: true},
+  date: {type: String, required: true},
   note: {type: String}
 }, {
   timestamps: true
@@ -20,15 +20,12 @@ const tripSchema = new Schema({
   private: {
     type:Boolean,
     default:true,
-    required:true,
   },
   startDate: {
-    type:Date,
-    required:true,
+    type:String,
   },
   endDate: {
-    type:Date,
-    required:true,
+    type:String,
   },
   activityPlans: [activityPlanSchema],
 },{
