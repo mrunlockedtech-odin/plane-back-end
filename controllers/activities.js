@@ -49,14 +49,12 @@ const update = async (req, res) => {
 const deleteActivity = async (req, res) => {
   try {
     const activity = await Activity.findByIdAndDelete(req.params.id)
-    const profile = await Profile.findById(req.user.profile)
-    profile.activities.remove({ _id: req.params.id })
-    await profile.save()
     res.status(200).json(activity)
   } catch (err) {
     res.status(500).json(err)
   }
 }
+
 
 
 export {
