@@ -12,8 +12,54 @@ const create = async(req, res) => {
   }
 }
 
+const index = async (req, res) => {
+  try {
+    const trips = await Trip.find({})
+      .populate('owner')
+      .sort({ createdAt: 'desc' })
+    res.status(200).json(trips)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const show = async (req, res) => {
+  try {
+  const trip = await Trip.findById(req.params.id)
+  .populate('owner')
+  res.status(200).json(trip)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
+const update = async (req, res) => {
+  try {
+    const trip = await Trip.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).populate('owner')
+    res.status(200).json(trip)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
+const deleteTrip = async (req, res) => {
+  try {
+    const trip = await Trip.findByIdAndDelete(req.params.id)
+    res.status(200).json(trip)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 
 
 export {
-  create
+  create,
+  index,
+  show,
+  update,
+  deleteTrip as delete,
 }
