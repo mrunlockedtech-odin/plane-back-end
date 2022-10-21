@@ -16,7 +16,7 @@ router.get('/', checkAuth, activityCtrl.index)
 router.get('/:id', checkAuth, activityCtrl.show)
 
 router.post('/',checkAuth, activityCtrl.create) 
-
+router.post('/:id/reviews', checkAuth, activityCtrl.createReview)
 
 router.put('/:id', checkAuth, activityCtrl.update)
 

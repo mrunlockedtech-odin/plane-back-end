@@ -55,6 +55,21 @@ const deleteActivity = async (req, res) => {
   }
 }
 
+const createReview = async (req, res) => {
+  try {
+    req.body.owner = req.user.profile
+    const activity = await Activity.findById(req.params.id)
+    activity.reviews.push(req.body)
+    await activity.save()
+
+  
+    const newReview = activity.reviews[activity.reviews.length - 1]
+
+    res.status(201).json(newReview)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 
 
 export {
@@ -63,5 +78,5 @@ export {
   show,
   update,
   deleteActivity as delete,
-  
+  createReview,
 }
