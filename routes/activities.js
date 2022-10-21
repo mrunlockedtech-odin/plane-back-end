@@ -15,7 +15,9 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, activityCtrl.index)
 router.get('/:id', checkAuth, activityCtrl.show)
 
-router.post('/',checkAuth,activityCtrl.create)
+router.post('/',checkAuth, activityCtrl.create) 
 
+
+router.put('/:id', checkAuth, activityCtrl.update)
 
 export { router }

@@ -32,4 +32,26 @@ const show = async (req, res) => {
     res.status(500).json(err)
   }
 }
-export {create, index, show}
+
+const update = async (req, res) => {
+  try {
+    const activity = await Activity.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).populate('owner')
+    res.status(200).json(blog)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
+
+
+export {
+  create,
+  index, 
+  show,
+  update,
+  
+}
