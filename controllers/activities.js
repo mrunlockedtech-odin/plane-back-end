@@ -46,6 +46,15 @@ const update = async (req, res) => {
   }
 }
 
+const deleteActivity = async (req, res) => {
+  try {
+    const activity = await Activity.findByIdAndDelete(req.params.id)
+    res.status(200).json(activity)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
 
 
 export {
@@ -53,6 +62,6 @@ export {
   index, 
   show,
   update,
-
+  deleteActivity as delete,
   
 }
