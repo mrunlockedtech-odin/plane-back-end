@@ -40,7 +40,7 @@ const update = async (req, res) => {
       req.body,
       { new: true }
     ).populate('owner')
-    res.status(200).json(blog)
+    res.status(200).json(activity)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -53,5 +53,6 @@ export {
   index, 
   show,
   update,
+
   
 }
