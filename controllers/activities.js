@@ -22,4 +22,14 @@ const index = async (req, res) => {
     res.status(500).json(err)
   }
 }
-export {create, index}
+
+const show = async (req, res) => {
+  try {
+    const activity = await Activity.findById(req.params.id)
+      .populate('owner')
+    res.status(200).json(activity)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+export {create, index, show}
