@@ -20,4 +20,6 @@ router.post('/',checkAuth, activityCtrl.create)
 
 router.put('/:id', checkAuth, activityCtrl.update)
 
+router.delete('/:id', checkAuth, activityCtrl.delete)
+
 export { router }
