@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as activityCtrl from '../controllers/activities.js'
+import * as tripCtrl from '../controllers/trips.js'
 import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
@@ -17,6 +18,9 @@ router.get('/:id', checkAuth, activityCtrl.show)
 
 router.post('/',checkAuth, activityCtrl.create) 
 router.post('/:id/reviews', checkAuth, activityCtrl.createReview)
+
+// POST from an activities details, add entry to Trip.activityPlans array
+router.post('/:id/activity-plan', checkAuth, tripCtrl.createActivityPlan)
 
 router.put('/:id', checkAuth, activityCtrl.update)
 
