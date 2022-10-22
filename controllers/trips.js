@@ -55,6 +55,10 @@ const deleteTrip = async (req, res) => {
   }
 }
 
+const addToTrip = async (req, res) => {
+    res.status(200).json()
+}
+
 
 export {
   create,
@@ -62,4 +66,5 @@ export {
   show,
   update,
   deleteTrip as delete,
+  addToTrip
 }
