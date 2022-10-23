@@ -57,10 +57,13 @@ const deleteTrip = async (req, res) => {
 
 const createActivityPlan = async (req, res) => {
   try {
-    req.body.activity = req.params.id
+
+    req.body.activity = req.body._id
+
     const trip = await Trip.findById(req.body.tripId)
     delete req.body.tripId
     trip.activityPlans.push(req.body)
+    console.log(trip.activityPlans)
     await trip.save()
     const newPlan = trip.activityPlans[trip.activityPlans.length - 1]
     res.status(201).json(newPlan)
