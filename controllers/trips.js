@@ -1,7 +1,8 @@
 import { Profile } from "../models/profile.js"
 import { Trip } from "../models/trip.js"
+import { Activity } from "../models/activity.js"
 
-const create = async(req, res) => {
+const create = async (req, res) => {
   try {
     req.body.owner = req.user.profile
     const trip = await Trip.create(req.body)
@@ -25,9 +26,9 @@ const index = async (req, res) => {
 
 const show = async (req, res) => {
   try {
-  const trip = await Trip.findById(req.params.id)
-  .populate('owner')
-  res.status(200).json(trip)
+    const trip = await Trip.findById(req.params.id)
+      .populate('owner')
+    res.status(200).json(trip)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -56,7 +57,14 @@ const deleteTrip = async (req, res) => {
 }
 
 const addToTrip = async (req, res) => {
+  try {
+    // const activity = await Activity.findById(req.body._id)
+    // const trip = await Trip.findById(req.body.trip)
+    console.log("Trip", req.body)
     res.status(200).json()
+  } catch (error) {
+    res.status(500).json(error)
+  }
 }
 
 
