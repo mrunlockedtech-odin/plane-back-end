@@ -8,13 +8,13 @@ const router = Router()
 
 
 // ========== Public Routes ===========
-router.get('/', activityCtrl.index)
-router.get('/:id', activityCtrl.show)
+
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
 
 // GET api/activities/  index of all activities
-
+router.get('/', checkAuth, activityCtrl.index)
+router.get('/:id', checkAuth, activityCtrl.show)
 
 router.post('/',checkAuth, activityCtrl.create) 
 router.post('/:id/reviews', checkAuth, activityCtrl.createReview)
