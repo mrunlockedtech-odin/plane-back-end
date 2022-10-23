@@ -55,6 +55,19 @@ const deleteTrip = async (req, res) => {
   }
 }
 
+const createActivityPlan = async (req, res) => {
+  try {
+    req.body.activity = req.params.id
+    const trip = await Trip.findById(req.body.tripId)
+    delete req.body.tripId
+    trip.activityPlans.push(req.body)
+    await trip.save()
+    const newPlan = trip.activityPlans[trip.activityPlans.length - 1]
+    res.status(201).json(newPlan)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 
 export {
   create,
@@ -62,4 +75,5 @@ export {
   show,
   update,
   deleteTrip as delete,
+  createActivityPlan,
 }
