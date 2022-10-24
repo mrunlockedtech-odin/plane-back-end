@@ -70,10 +70,10 @@ const createActivityPlan = async (req, res) => {
 }
 
 const deleteActivityPlan = async (req, res) => {
+  console.log(req.body, req.params, "HERE")
   try {
-    req.body.activity = req.params.id
-    const trip = await Trip.findById(req.params.tripId)
-    trip.activityPlans.remove({ _id: req.params.id})
+    const trip = await Trip.findById(req.params.id)
+    trip.activityPlans.remove({ _id: req.params.activityPlanId})
     await trip.save()
     res.status(200).json(trip)
   } catch (error) {
