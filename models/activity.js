@@ -24,10 +24,15 @@ const activitySchema = new Schema({
   },
   timeOfDay: {
     type:String,
-    enum: ['Daytime', 'Afternoon', 'Evening']
+    enum: ['Morning', 'Afternoon','Daytime','Evening'],
+    default: 'Daytime'
   },
-  duration: Number,
-  cost:String,
+  duration: { type: Number, default: 1},
+  cost: {
+    type: String,
+    enum: ['$','$$','$$$','$$$$'],
+    default: '$'
+  },
   reviews:[reviewSchema]
 },{
   timestamps: true,
