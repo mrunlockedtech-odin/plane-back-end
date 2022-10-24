@@ -14,7 +14,7 @@ router.post('/', checkAuth, tripCtrl.create)
 router.get('/', checkAuth, tripCtrl.index)
 router.get('/:id', checkAuth, tripCtrl.show)
 router.put('/:id', checkAuth, tripCtrl.update)
+router.delete('/:id/activityPlans/:activityPlanId', checkAuth, tripCtrl.deleteActivityPlan)
 router.delete('/:id', checkAuth, tripCtrl.delete)
-
 
 export { router }

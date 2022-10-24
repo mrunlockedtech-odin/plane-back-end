@@ -69,6 +69,18 @@ const createActivityPlan = async (req, res) => {
   }
 }
 
+const deleteActivityPlan = async (req, res) => {
+  console.log(req.body, req.params, "HERE")
+  try {
+    const trip = await Trip.findById(req.params.id)
+    trip.activityPlans.remove({ _id: req.params.activityPlanId})
+    await trip.save()
+    res.status(200).json(trip)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index,
@@ -76,4 +88,5 @@ export {
   update,
   deleteTrip as delete,
   createActivityPlan,
+  deleteActivityPlan
 }
