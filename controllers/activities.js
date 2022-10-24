@@ -57,8 +57,10 @@ const deleteActivity = async (req, res) => {
 
 const createReview = async (req, res) => {
   try {
+    console.log(req.body)
     req.body.owner = req.user.profile
-    const activity = await Activity.findById(req.params.id)
+    const activity = await Activity.findById(req.body.activity)
+    delete req.body.activity
     activity.reviews.push(req.body)
     await activity.save()
 
