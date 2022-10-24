@@ -17,7 +17,7 @@ router.use(decodeUserFromToken)
 
 
 router.post('/',checkAuth, activityCtrl.create) 
-router.post('/:id/reviews', checkAuth, activityCtrl.createReview)
+router.post('/:id/createReview', checkAuth, activityCtrl.createReview)
 
 // POST from an activities details, add entry to Trip.activityPlans array
 router.post('/:id/activity-plan', checkAuth, tripCtrl.createActivityPlan)
