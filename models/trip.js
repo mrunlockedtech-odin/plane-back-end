@@ -19,7 +19,7 @@ const tripSchema = new Schema({
   },
   private: {
     type:Boolean,
-    default:true,
+    default: true,
   },
   startDate: {
     type:String,
