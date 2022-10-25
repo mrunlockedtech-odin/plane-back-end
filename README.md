@@ -1,0 +1,1 @@
+This repo contains the backend for Plan.e. More details on the project and the front-end repo can be found [here](https://github.com/thepika206/plane-front-end).
