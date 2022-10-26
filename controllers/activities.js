@@ -1,8 +1,8 @@
 import { Profile } from "../models/profile.js"
-import { Activity} from "../models/activity.js"
+import { Activity } from "../models/activity.js"
 
 
-const create = async(req,res) => {
+const create = async (req, res) => {
   try {
     req.body.owner = req.user.profile
     const activity = await Activity.create(req.body)
@@ -27,6 +27,14 @@ const show = async (req, res) => {
   try {
     const activity = await Activity.findById(req.params.id)
       .populate('owner')
+      .populate({
+        path: 'reviews',
+        model: 'reviewSchema',
+        populate: {
+          path: 'owner'
+        }
+      })
+
     res.status(200).json(activity)
   } catch (err) {
     res.status(500).json(err)
@@ -57,14 +65,15 @@ const deleteActivity = async (req, res) => {
 
 const createReview = async (req, res) => {
   try {
-    console.log(req.body)
     req.body.owner = req.user.profile
     const activity = await Activity.findById(req.body.activity)
     delete req.body.activity
+
     activity.reviews.push(req.body)
+
     await activity.save()
 
-  
+
     const newReview = activity.reviews[activity.reviews.length - 1]
 
     res.status(201).json(newReview)
@@ -76,7 +85,7 @@ const createReview = async (req, res) => {
 
 export {
   create,
-  index, 
+  index,
   show,
   update,
   deleteActivity as delete,
