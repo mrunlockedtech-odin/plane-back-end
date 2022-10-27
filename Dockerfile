@@ -17,7 +17,7 @@ ENV NODE_ENV production
 
 COPY . .
 
-RUN npm install && npm run build
+RUN npm install
 FROM debian:bullseye
 
 COPY --from=builder /root/.volta /root/.volta

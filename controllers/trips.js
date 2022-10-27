@@ -14,7 +14,22 @@ const create = async(req, res) => {
 
 const index = async (req, res) => {
   try {
-    const trips = await Trip.find({})
+    const trips = await Trip.find({
+      'private':false      
+    })
+      .populate('owner')
+      .sort({ createdAt: 'desc' })
+    res.status(200).json(trips)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const indexPersonal = async (req, res) => {
+  try {
+    const trips = await Trip.find({
+      'owner':req.user.profile
+    })
       .populate('owner')
       .sort({ createdAt: 'desc' })
     res.status(200).json(trips)
@@ -84,6 +99,7 @@ const deleteActivityPlan = async (req, res) => {
 export {
   create,
   index,
+  indexPersonal,
   show,
   update,
   deleteTrip as delete,
