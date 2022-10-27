@@ -6,6 +6,12 @@ const create = async (req, res) => {
   try {
     req.body.owner = req.user.profile
     const activity = await Activity.create(req.body)
+    const profile = await Profile.findByIdAndUpdate(
+      req.user.profile,
+      { $push: { activities: activity } },
+      { new: true }
+    )
+    activity.owner = profile
     res.status(201).json(activity)
   } catch (error) {
     console.log(error)
