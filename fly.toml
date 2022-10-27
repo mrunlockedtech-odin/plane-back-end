@@ -1,4 +1,4 @@
-# fly.toml file generated for wifi-travelers-plane on 2022-10-25T15:55:10-05:00
+# fly.toml file generated for wifi-travelers-plane on 2022-10-27T08:14:17-05:00
 
 app = "wifi-travelers-plane"
 kill_signal = "SIGINT"
@@ -6,6 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
+  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []

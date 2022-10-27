@@ -15,7 +15,7 @@ const create = async(req, res) => {
 const index = async (req, res) => {
   try {
     const trips = await Trip.find({
-      // 'private':false      
+      'private':false      
     })
       .populate('owner')
       .sort({ createdAt: 'desc' })
